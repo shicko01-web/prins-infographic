@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqua Plus PRINS - קבוצת פולק</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; }
+        
+        /* Palette: "Brilliant Blues & Energetic Greens" */
+        /* Primary: #0ea5e9, Secondary: #22c55e, Accent: #fbbf24 */
+
+        /* Chart Container Styling - MANDATORY */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        /* Pipe Anatomy Diagram (CSS Only - NO SVG) */
+        .anatomy-wrapper {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .layer-u-pvc {
+            width: 100%; height: 100%;
+            background-color: #e2e8f0;
+            border: 4px solid #94a3b8;
+            border-radius: 9999px;
+            position: absolute;
+            z-index: 1;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        .layer-pur {
+            width: 80%; height: 80%;
+            background-color: #fbbf24;
+            border: 2px solid #d97706;
+            border-radius: 9999px;
+            position: absolute;
+            z-index: 2;
+        }
+        .layer-ppr {
+            width: 55%; height: 55%;
+            background-color: #22c55e;
+            border: 4px solid #16a34a;
+            border-radius: 9999px;
+            position: absolute;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .inner-water {
+            width: 80%; height: 80%;
+            background-color: #0ea5e9;
+            border-radius: 9999px;
+            opacity: 0.6;
+        }
+
+        .label-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            position: absolute;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .chart-container { height: 300px; }
+            .anatomy-wrapper { width: 220px; height: 220px; }
+        }
+    </style>
+</head>
+<body class="text-slate-900">
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-sky-900 to-slate-900 text-white py-16 px-6 shadow-2xl relative overflow-hidden">
+        <div class="max-w-6xl mx-auto relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">Aqua Plus PRINS</h1>
+            <p class="text-lg md:text-xl font-light text-sky-200 mt-2 mb-6">By Interplast Greece</p>
+            
+            <h2 class="text-xl md:text-3xl text-white font-light max-w-3xl mx-auto leading-relaxed">
+                קבוצת פולק גאה להציג את צנרת ה-PPR עם בידוד מובנה מראש.
+            </h2>
+            <div class="mt-10 flex flex-wrap justify-center gap-4">
+                <div class="bg-green-500/20 border border-green-400 px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    חיסכון אנרגטי של עד 70%
+                </div>
+                <div class="bg-sky-500/20 border border-sky-400 px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2">
+                    <span class="w-2 h-2 bg-sky-400 rounded-full animate-pulse"></span>
+                    אפס עיבוי במפעלים רגישים
+                </div>
+                <div class="bg-amber-500/20 border border-amber-400 px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2">
+                    <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+                    50 שנות עמידות ללא תחזוקה
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Intro Narrative -->
+    <section class="max-w-4xl mx-auto px-6 py-16 text-center">
+        <h2 class="text-3xl font-bold text-slate-800 mb-8 border-b-4 border-sky-500 inline-block pb-2">מדוע מהנדסי מ"א בוחרים בסדרת PRINS?</h2>
+        <p class="text-lg text-slate-600 leading-relaxed mb-8">
+            בתכנון מערכות מיזוג אוויר וקירור למפעלי מזון, פארמה וסופרמרקטים, הדיוק התרמי הוא קריטי.
+            הזרקת פוליאוריטן (PUR) בלחץ גבוה במפעל מבטלת את כשל הביצוע האנושי בשטח, מונעת גשרים תרמיים ומבטיחה מערכת הרמטית לחלוטין.
+        </p>
+    </section>
+
+    <!-- Main Data Grid -->
+    <main class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 pb-20">
+
+        <!-- Visual: Pipe Anatomy -->
+        <div class="bg-slate-900 rounded-3xl p-10 shadow-xl flex flex-col items-center">
+            <h3 class="text-2xl font-bold text-white mb-2 text-center">אנטומיה של בידוד מושלם</h3>
+            <p class="text-slate-400 text-sm mb-10 text-center">מבנה תלת-שכבתי להגנה תרמית, מכנית וכימית מקסימלית</p>
+            
+            <div class="anatomy-wrapper">
+                <div class="layer-u-pvc"></div>
+                <div class="label-box" style="top: -10px; right: 0;">מעטפת uPVC קשיחה (מוגנת UV וחמצן)</div>
+                
+                <div class="layer-pur"></div>
+                <div class="label-box" style="top: 40%; left: -40px;">בידוד PUR (הזרקה בלחץ)</div>
+                
+                <div class="layer-ppr">
+                    <div class="inner-water"></div>
+                </div>
+                <div class="label-box" style="bottom: 10px; right: 20px;">צינור PPR איכותי (Interplast)</div>
+            </div>
+            
+            <div class="mt-12 text-slate-300 text-sm space-y-3 w-full">
+                <p>• <strong>Oxygen TIGHT:</strong> מונע לחלוטין חדירת לחות, עיבוי וגם חמצן בזכות מעטפת ה-uPVC (תכונה שאינה קיימת בצנרת PPR רגילה).</p>
+                <p>• <strong>עמידות UV:</strong> הגנה מוחלטת לקרינת שמש, אידיאלי להתקנות חשופות בחוץ ובפנים למשך 50 שנה.</p>
+            </div>
+        </div>
+
+        <!-- Chart 1: Lambda Values -->
+        <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
+            <h3 class="text-2xl font-bold text-slate-800 mb-4 border-r-4 border-sky-500 pr-4">המרדף אחר הלמבדא (λ) הנמוכה</h3>
+            <p class="text-slate-600 text-sm mb-8 leading-relaxed">
+                בדיקות מכון FFI הגרמני מאשרות ערך מוליכות קבוע של $0.024-0.028 W/mK$. סדרת PRINS שומרת על היעילות האנרגטית למשך 50 שנה ללא דעיכה בביצועים.
+            </p>
+            <div class="chart-container">
+                <canvas id="lambdaChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Chart 2: ROI & Cumulative Savings -->
+        <div class="md:col-span-2 bg-white rounded-3xl p-10 shadow-lg border border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div>
+                <h3 class="text-2xl font-bold text-slate-800 mb-6">הנדסת ROI: השקעה חכמה מול חיסכון תפעולי</h3>
+                <p class="text-slate-600 mb-8 leading-relaxed">
+                    הגרף מציג את החזר ההשקעה המואץ. בזכות עד 70% חיסכון באובדן אנרגיה תרמית, המערכת מחזירה את עצמה במהירות והופכת למקור חיסכון כספי אדיר ליזם לאורך 50 שנה.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-green-50 p-6 rounded-2xl">
+                        <span class="block text-3xl font-black text-green-600">עד 70%</span>
+                        <span class="text-xs text-slate-500">חיסכון באנרגיה (FFI)</span>
+                    </div>
+                    <div class="bg-sky-50 p-6 rounded-2xl">
+                        <span class="block text-3xl font-black text-sky-600">0₪</span>
+                        <span class="text-xs text-slate-500">עלויות תחזוקה שוטפת</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="roiChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Chart 3: Expansion -->
+        <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
+            <h3 class="text-2xl font-bold text-slate-800 mb-4 border-r-4 border-amber-500 pr-4">יציבות מבנית: התפשטות תרמית</h3>
+            <p class="text-slate-600 text-sm mb-8 leading-relaxed">
+                מקדם התפשטות נמוך ($0.016 mm/m^{\circ}C$) מאפשר להגדיל את מרווחי התמיכות (חבקים). התוצאה: פחות חומר גלם וחיסכון משמעותי בעלויות הקונסטרוקציה.
+            </p>
+            <div class="chart-container" style="height: 250px;">
+                <canvas id="expansionChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Chart 4: Speed -->
+        <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
+            <h3 class="text-2xl font-bold text-slate-800 mb-4 border-r-4 border-green-500 pr-4">קיצור לו"ז הפרויקט</h3>
+            <p class="text-slate-600 text-sm mb-8 leading-relaxed">
+                שיטת ה-One-Step מבטלת את הצורך בהמתנה למבודדים באתר. צנרת PPR עם הבידוד המובנה מראש מותקנת במהירות הגבוהה ב-50% מהשיטה המסורתית.
+            </p>
+            <div class="chart-container" style="height: 250px;">
+                <canvas id="speedChart"></canvas>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Regulatory Section -->
+    <section class="max-w-4xl mx-auto px-6 py-12 mb-20 bg-amber-50 rounded-3xl border-2 border-amber-200 text-center">
+        <h3 class="text-2xl font-bold text-amber-900 mb-4 italic">בלעדיות בתקינה הישראלית</h3>
+        <p class="text-amber-800 text-lg leading-relaxed">
+            Aqua Plus PRINS היא צנרת ה-PUR היחידה בישראל המאושרת על ידי מכון התקנים (ת"י 755 / 921) להתקנה <strong>בתוך מבנים</strong>. 
+            זהו היתרון שמאפשר למהנדסים לתכנן בביטחון מלא ובאישור רגולטורי.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-16 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-extrabold mb-4">קבוצת פולק - הפתרון ההנדסי שלך</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-6 mt-10">
+                <a href="mailto:pump@polak.co.il" class="bg-sky-600 hover:bg-sky-700 text-white px-10 py-4 rounded-full font-bold shadow-lg transition-all">pump@polak.co.il</a>
+                <a href="tel:03-9100333" class="bg-white text-slate-900 px-10 py-4 rounded-full font-bold shadow-lg hover:bg-slate-100 transition-all">03-9100333</a>
+            </div>
+            <p class="mt-12 text-slate-600 text-sm">© 2026 Polak Group | Interplast | Aqua Plus PRINS Infographic</p>
+        </div>
+    </footer>
+
+    <script>
+        function wrapLabel(label) {
+            if (typeof label !== 'string' || label.length <= 16) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= 16) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        new Chart(document.getElementById('lambdaChart'), {
+            type: 'bar',
+            data: {
+                labels: ['צנרת PRINS (מדידות FFI)', 'בידוד קונבנציונלי (ארמופלקס)'].map(wrapLabel),
+                datasets: [{
+                    label: 'מוליכות תרמית (W/mK)',
+                    data: [0.024, 0.040],
+                    backgroundColor: ['#0ea5e9', '#94a3b8'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { tooltip: tooltipConfig, legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        new Chart(document.getElementById('roiChart'), {
+            type: 'line',
+            data: {
+                labels: ['שנה 1', 'שנה 5', 'שנה 10', 'שנה 20', 'שנה 50'].map(wrapLabel),
+                datasets: [{
+                    label: 'חיסכון מצטבר (₪)',
+                    data: [10000, 80000, 200000, 500000, 1200000],
+                    borderColor: '#22c55e',
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { tooltip: tooltipConfig } }
+        });
+
+        new Chart(document.getElementById('expansionChart'), {
+            type: 'bar',
+            indexAxis: 'y',
+            data: {
+                labels: ['פלדה', 'PPR סדרת PRINS', 'PPR סטנדרטי'].map(wrapLabel),
+                datasets: [{
+                    label: 'מקדם התפשטות (mm/m°C)',
+                    data: [0.012, 0.016, 0.080],
+                    backgroundColor: ['#64748b', '#fbbf24', '#ef4444']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { tooltip: tooltipConfig, legend: { display: false } } }
+        });
+
+        new Chart(document.getElementById('speedChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['חיסכון בזמן (One-Step)', 'זמן התקנה נותר'].map(wrapLabel),
+                datasets: [{
+                    data: [50, 50],
+                    backgroundColor: ['#22c55e', '#f1f5f9']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { tooltip: tooltipConfig } }
+        });
+    </script>
+</body>
+</html>
