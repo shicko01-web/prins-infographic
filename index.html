@@ -13,6 +13,11 @@
     
     <style>
         body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; }
+        
+        /* Palette: "Brilliant Blues & Energetic Greens" */
+        /* Primary: #0ea5e9, Secondary: #22c55e, Accent: #fbbf24 */
+
+        /* Chart Container Styling - MANDATORY */
         .chart-container {
             position: relative;
             width: 100%;
@@ -22,6 +27,8 @@
             height: 350px;
             max-height: 400px;
         }
+
+        /* Pipe Anatomy Diagram (CSS Only - NO SVG) */
         .anatomy-wrapper {
             position: relative;
             width: 300px;
@@ -65,6 +72,7 @@
             border-radius: 9999px;
             opacity: 0.6;
         }
+
         .label-box {
             background: rgba(255, 255, 255, 0.9);
             padding: 4px 8px;
@@ -75,6 +83,7 @@
             z-index: 10;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+
         @media (max-width: 768px) {
             .chart-container { height: 300px; }
             .anatomy-wrapper { width: 220px; height: 220px; }
@@ -136,6 +145,11 @@
                 </div>
                 <div class="label-box" style="bottom: 10px; right: 20px;">צינור PPR איכותי (Interplast)</div>
             </div>
+            
+            <div class="mt-12 text-slate-300 text-sm space-y-2 w-full">
+                <p>• <strong>אפס מרווחי אוויר:</strong> מונע לחלוטין חדירת לחות ועיבוי.</p>
+                <p>• <strong>עמידות UV:</strong> אידיאלי להתקנות חשופות בחוץ ובפנים.</p>
+            </div>
         </div>
 
         <!-- Chart 1: Lambda Values -->
@@ -149,16 +163,16 @@
             </div>
         </div>
 
-        <!-- Chart 2: ROI -->
+        <!-- Chart 2: ROI & Cumulative Savings -->
         <div class="md:col-span-2 bg-white rounded-3xl p-10 shadow-lg border border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
-                <h3 class="text-2xl font-bold text-slate-800 mb-6">הנדסת ROI: חיסכון תפעולי מוכח</h3>
+                <h3 class="text-2xl font-bold text-slate-800 mb-6">הנדסת ROI: השקעה חכמה מול חיסכון תפעולי</h3>
                 <p class="text-slate-600 mb-8 leading-relaxed">
-                    בזכות 70% חיסכון באובדן אנרגיה תרמית, המערכת מחזירה את עצמה במהירות והופכת למקור חיסכון כספי אדיר ליזם.
+                    הגרף מציג את החזר ההשקעה המואץ. בזכות עד 70% חיסכון באובדן אנרגיה תרמית, המערכת מחזירה את עצמה במהירות והופכת למקור חיסכון כספי אדיר ליזם לאורך 50 שנה.
                 </p>
                 <div class="grid grid-cols-2 gap-4">
                     <div class="bg-green-50 p-6 rounded-2xl">
-                        <span class="block text-3xl font-black text-green-600">70%</span>
+                        <span class="block text-3xl font-black text-green-600">עד 70%</span>
                         <span class="text-xs text-slate-500">חיסכון באנרגיה (FFI)</span>
                     </div>
                     <div class="bg-sky-50 p-6 rounded-2xl">
@@ -175,6 +189,9 @@
         <!-- Chart 3: Expansion -->
         <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
             <h3 class="text-2xl font-bold text-slate-800 mb-4 border-r-4 border-amber-500 pr-4">יציבות מבנית: התפשטות תרמית</h3>
+            <p class="text-slate-600 text-sm mb-8 leading-relaxed">
+                מקדם התפשטות נמוך ($0.016 mm/m^{\circ}C$) מאפשר להגדיל את מרווחי התמיכות (חבקים). התוצאה: פחות חומר גלם וחיסכון משמעותי בעלויות הקונסטרוקציה.
+            </p>
             <div class="chart-container" style="height: 250px;">
                 <canvas id="expansionChart"></canvas>
             </div>
@@ -183,10 +200,14 @@
         <!-- Chart 4: Speed -->
         <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
             <h3 class="text-2xl font-bold text-slate-800 mb-4 border-r-4 border-green-500 pr-4">קיצור לו"ז הפרויקט</h3>
+            <p class="text-slate-600 text-sm mb-8 leading-relaxed">
+                שיטת ה-One-Step מבטלת את הצורך בהמתנה למבודדים באתר. צנרת PPR עם הבידוד המובנה מראש מותקנת במהירות הגבוהה ב-50% מהשיטה המסורתית.
+            </p>
             <div class="chart-container" style="height: 250px;">
                 <canvas id="speedChart"></canvas>
             </div>
         </div>
+
     </main>
 
     <!-- Regulatory Section -->
@@ -194,6 +215,7 @@
         <h3 class="text-2xl font-bold text-amber-900 mb-4 italic">בלעדיות בתקינה הישראלית</h3>
         <p class="text-amber-800 text-lg leading-relaxed">
             Aqua Plus PRINS היא צנרת ה-PUR היחידה בישראל המאושרת על ידי מכון התקנים (ת"י 755 / 921) להתקנה <strong>בתוך מבנים</strong>. 
+            זהו היתרון שמאפשר למהנדסים לתכנן בביטחון מלא ובאישור רגולטורי.
         </p>
     </section>
 
@@ -202,9 +224,10 @@
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-extrabold mb-4">קבוצת פולק - הפתרון ההנדסי שלך</h2>
             <div class="flex flex-col md:flex-row justify-center gap-6 mt-10">
-                <a href="mailto:pump@polak.co.il" class="bg-sky-600 px-10 py-4 rounded-full font-bold">pump@polak.co.il</a>
-                <a href="tel:03-9100333" class="bg-white text-slate-900 px-10 py-4 rounded-full font-bold">03-9100333</a>
+                <a href="mailto:pump@polak.co.il" class="bg-sky-600 hover:bg-sky-700 text-white px-10 py-4 rounded-full font-bold shadow-lg transition-all">pump@polak.co.il</a>
+                <a href="tel:03-9100333" class="bg-white text-slate-900 px-10 py-4 rounded-full font-bold shadow-lg hover:bg-slate-100 transition-all">03-9100333</a>
             </div>
+            <p class="mt-12 text-slate-600 text-sm">© 2026 Polak Group | Interplast | Aqua Plus Prins Infographic</p>
         </div>
     </footer>
 
@@ -239,7 +262,7 @@
         new Chart(document.getElementById('lambdaChart'), {
             type: 'bar',
             data: {
-                labels: ['צנרת פרינס (FFI)', 'בידוד ידני בשטח'].map(wrapLabel),
+                labels: ['צנרת פרינס (מדידות FFI)', 'בידוד קונבנציונלי (ארמופלקס)'].map(wrapLabel),
                 datasets: [{
                     label: 'מוליכות (W/mK)',
                     data: [0.024, 0.040],
